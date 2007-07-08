@@ -25,11 +25,12 @@ class BooksControllerTest < Test::Unit::TestCase
     @response = ActionController::TestResponse.new
   end
   
-  def test_that_index_renders
+  def test_that_index_renders_and_assigns
     get :index
     
     assert_response :success
     assert_template 'index'
+    assert_not_nil assigns(:books)
   end
   
   def test_that_new_renders
@@ -54,7 +55,7 @@ class BooksControllerTest < Test::Unit::TestCase
   
   def test_that_unsuccessful_create_rerenders_with_error
     form_data = {:title => "Transmission", :author => "Hari Kunzru", :isbn => '978-0525947608'}
-    book = mock
+    book = Book.new
     Book.expects(:new).with(form_data.stringify_keys).returns(book)
     book.expects(:save).returns(false)
     

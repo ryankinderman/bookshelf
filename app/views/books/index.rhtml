@@ -1,1 +1,15 @@
+<h1>Books</h1>
+<table>
+	<tr>
+		<th>Title</th>
+    <th>Author</th>
+	</tr>
+	<% @books.each do |book| %>
+  <tr>
+  	<td><%= book.title %></td>
+		<td><%= book.author %></td>
+  </tr>	
+	<% end %>
+</table>
+
 <%= link_to 'New Book', :controller => 'books', :action => 'new' %>
