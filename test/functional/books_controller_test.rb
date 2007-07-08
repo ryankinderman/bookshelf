@@ -51,6 +51,7 @@ class BooksControllerTest < Test::Unit::TestCase
     assert_response :redirect
     assert_redirected_to :action => 'index'
     assert_not_nil flash[:notice]
+    assert_not_nil assigns(:books)
   end
   
   def test_that_unsuccessful_create_rerenders_with_error
@@ -63,6 +64,47 @@ class BooksControllerTest < Test::Unit::TestCase
     
     assert_response :success
     assert_template 'new'
+    assert_not_nil flash[:error]
+    assert flash.now?
+  end
+  
+  def test_that_edit_renders_and_assigns
+    book = Book.new
+    Book.expects(:find).with('123').returns(book)
+    
+    get :edit, :id => 123
+    
+    assert_response :success
+    assert_template 'edit'
+    assert_not_nil assigns(:book)
+  end
+  
+  def test_that_successful_update_redirects_to_index_and_flashes_notice
+    form_data = {:author => "William Gibson"}
+    book = Book.new
+    Book.expects(:find).with('123').returns(book)
+    book.expects(:update_attributes).with(form_data.stringify_keys).returns(true)
+    Book.expects(:find).with(:all).returns([])
+    
+    put :update, :id => 123, :book => form_data
+    
+    assert_response :redirect
+    assert_redirected_to :action => 'index'
+    assert_not_nil assigns(:books)
+    assert_not_nil flash[:notice]
+  end
+  
+  def test_that_unsuccessful_update_rerenders_and_flashes_error
+    form_data = {:author => "William Gibson"}
+    book = Book.new
+    Book.expects(:find).with('123').returns(book)
+    book.expects(:update_attributes).with(form_data.stringify_keys).returns(false)
+    
+    put :update, :id => 123, :book => form_data
+    
+    assert_response :success
+    assert_template 'edit'
+    assert_not_nil assigns(:book)
     assert_not_nil flash[:error]
     assert flash.now?
   end

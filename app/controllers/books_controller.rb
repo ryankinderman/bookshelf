@@ -10,8 +10,24 @@ class BooksController < ApplicationController
       initialize_index
       redirect_to :action => 'index'
     else
-      flash.now[:error] = "Errors were encountered while attempting to create the book"
+      flash.now[:error] = "Errors occurred while attempting to create the book"
       render :action => 'new'
+    end
+  end
+  
+  def edit
+    @book = Book.find(params[:id])
+  end
+  
+  def update
+    @book = Book.find(params[:id])
+    if @book.update_attributes(params[:book])
+      flash[:notice] = "Successfully updated book '#{@book.title}'"
+      initialize_index
+      redirect_to :action => 'index'
+    else
+      flash.now[:error] = "Errors occurred while attempting to update the book"
+      render :action => 'edit'
     end
   end
   
