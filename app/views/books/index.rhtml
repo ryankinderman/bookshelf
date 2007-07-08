@@ -9,7 +9,10 @@
   <tr>
   	<td><%= book.title %></td>
 		<td><%= book.author %></td>
-		<td><%= link_to 'Edit', :action => 'edit', :id => book.id %></td>
+		<td>
+			<%= link_to 'Edit', :action => 'edit', :id => book.id %> 
+			<%= link_to 'Remove', {:action => 'destroy', :id => book.id}, :method => :delete %>
+		</td>
   </tr>	
 	<% end %>
 </table>

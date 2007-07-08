@@ -108,5 +108,16 @@ class BooksControllerTest < Test::Unit::TestCase
     assert_not_nil flash[:error]
     assert flash.now?
   end
+  
+  def test_that_destroy_redirects_to_index_and_flashes_notice
+    Book.expects(:delete).with('123')
+    
+    delete :destroy, :id => 123
+    
+    assert_response :redirect
+    assert_redirected_to :action => 'index'
+    assert_not_nil assigns(:books)
+    assert_not_nil flash[:notice]
+  end
 
 end
