@@ -1,15 +1,4 @@
 <h1>Edit Book</h1>
 <% form_for :book, @book, :url => {:action => 'update', :id => @book.id}, :html => {:method => 'put'} do |f| -%>
-  <%= error_messages_for :book %>
-  <div>
-    <label for="book_title">Title</label>
-    <%= f.text_field :title %>
-  </div>
-  <div>
-    <label for="book_author">Author</label>
-    <%= f.text_field :author %>
-  </div>
-  
-  <%= submit_tag %>
-  <%= link_to 'Cancel', :action => 'index' %>
+  <%= render :partial => 'form_fields', :locals => {:f => f} %>
 <% end -%>  

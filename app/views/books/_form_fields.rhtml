@@ -1,0 +1,12 @@
+<%= error_messages_for :book %>
+<div>
+  <label for="book_title">Title</label>
+  <%= f.text_field :title %>
+</div>
+<div>
+  <label for="book_author">Author</label>
+  <%= f.text_field :author %>
+</div>
+
+<%= submit_tag %>
+<%= link_to 'Cancel', :action => 'index' %>

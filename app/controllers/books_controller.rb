@@ -6,7 +6,7 @@ class BooksController < ApplicationController
   def create
     @book = Book.new(params[:book])
     if @book.save
-      flash[:notice] = "Successfully created book '#{@book.title}''"
+      flash[:notice] = "Successfully created book '#{@book.title}'"
       redirect_to_index
     else
       flash.now[:error] = "Errors occurred while attempting to create the book"
