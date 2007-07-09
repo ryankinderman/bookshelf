@@ -1,4 +1,4 @@
 <h1>Edit Book</h1>
-<% form_for :book, @book, :url => {:action => 'update', :id => @book.id}, :html => {:method => 'put'} do |f| -%>
+<% form_for :book, @book, :url => book_url(:id => @book.id), :html => {:method => 'put'} do |f| -%>
   <%= render :partial => 'form_fields', :locals => {:f => f} %>
 <% end -%>  

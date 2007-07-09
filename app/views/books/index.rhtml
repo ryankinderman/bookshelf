@@ -10,11 +10,11 @@
   	<td><%= book.title %></td>
 		<td><%= book.author %></td>
 		<td>
-			<%= link_to 'Edit', :action => 'edit', :id => book.id %> 
-			<%= link_to 'Remove', {:action => 'destroy', :id => book.id}, :method => :delete %>
+			<%= link_to 'Edit', edit_book_url(:id => book.id) %> 
+			<%= link_to 'Remove', book_url(:id => book.id), :method => :delete %>
 		</td>
   </tr>	
 	<% end %>
 </table>
 
-<%= link_to 'New Book', :controller => 'books', :action => 'new' %>
+<%= link_to 'New Book', new_book_url %>
