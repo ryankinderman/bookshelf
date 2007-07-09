@@ -24,7 +24,8 @@ class Test::Unit::TestCase
       controller_name = matches[1]
       require controller_name.underscore
       controller = controller_name.constantize
-      if !controller.method_defined?(:primer)
+      if @rescue_action_defined.nil?
+        @rescue_action_defined = true
         controller.class_eval do
           def rescue_action(e); raise e; end
         end
