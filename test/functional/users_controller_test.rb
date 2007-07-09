@@ -1,8 +1,4 @@
-require File.dirname(__FILE__) + '/../test_helper'
-require 'users_controller'
-
-# Re-raise errors caught by the controller.
-class UsersController; def rescue_action(e) raise e end; end
+require File.dirname(__FILE__) + '/controller_test_helper'
 
 class UsersControllerTest < Test::Unit::TestCase
   # Be sure to include AuthenticatedTestHelper in test/test_helper.rb instead
@@ -10,12 +6,6 @@ class UsersControllerTest < Test::Unit::TestCase
   include AuthenticatedTestHelper
 
   fixtures :users
-
-  def setup
-    @controller = UsersController.new
-    @request    = ActionController::TestRequest.new
-    @response   = ActionController::TestResponse.new
-  end
 
   def test_should_login_and_redirect
     post :login, :login => 'quentin', :password => 'test'

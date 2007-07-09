@@ -42,6 +42,7 @@ class BooksControllerTest < Test::Unit::TestCase
   
   def test_that_edit_renders_and_assigns
     book = Book.new
+    book.stubs(:id).returns(123)
     Book.expects(:find).with('123').returns(book)
     
     get :edit, :id => 123
@@ -67,6 +68,7 @@ class BooksControllerTest < Test::Unit::TestCase
   def test_that_unsuccessful_update_rerenders_and_flashes_error
     form_data = {:author => "William Gibson"}
     book = Book.new
+    book.stubs(:id).returns(123)
     Book.expects(:find).with('123').returns(book)
     book.expects(:update_attributes).with(form_data.stringify_keys).returns(false)
     
