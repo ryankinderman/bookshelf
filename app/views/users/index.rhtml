@@ -1,6 +1,0 @@
-<% if logged_in? -%>
-	<div>Logged in as: <%= current_user.login %></div><%= link_to 'Logout', logout_user_url %>
-<% else -%>
-	<%= link_to 'Login', login_user_url %> or 
-	<%= link_to 'Sign Up', signup_user_url %> 
-<% end %>

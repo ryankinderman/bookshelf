@@ -4,8 +4,24 @@
     <title>
       BookShelf.com - <%= @controller.action_name.titleize %>
     </title>
+		<%= stylesheet_link_tag 'application' %>
   </head>
   <body>
+  	<div id="header">
+  		<div id="title">
+  			<span>BookShelf</span>
+  		</div>
+  		<div id="login_status">
+				<% if logged_in? -%>
+				  <div>Logged in as: <%= current_user.login %></div><%= link_to 'Logout', logout_user_url %>
+				<% else -%>
+				  <%= link_to 'Login', login_user_url %> or 
+				  <%= link_to 'Sign Up', signup_user_url %> 
+				<% end %>
+			</div>
+			<div class="clear"></div>
+  	</div>
+  	<div id="flash">
     <% unless flash[:error].nil? -%>
       <div id="flash_error">
         <%= flash[:error] %>
@@ -16,6 +32,9 @@
         <%= flash[:notice] %>
       </div>		
     <% end -%>
+		</div>
+		<div id="content">
     <%= yield %>
+		</div>
   </body>
 </html>
