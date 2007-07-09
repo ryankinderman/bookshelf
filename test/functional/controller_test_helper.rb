@@ -15,6 +15,8 @@ ActionController::Flash::FlashHash.class_eval do
 end
 
 class Test::Unit::TestCase
+  include AuthenticatedTestHelper
+  fixtures :users
 
   def setup_with_common_initialization
     matches = self.class.name.match(/(.*Controller)Test/)
@@ -25,16 +27,15 @@ class Test::Unit::TestCase
       if !controller.method_defined?(:primer)
         controller.class_eval do
           def rescue_action(e); raise e; end
-          def primer
-            render :nothing => true
-          end
         end
       end
       @controller = controller.new
       @request = ActionController::TestRequest.new
       @response = ActionController::TestResponse.new
-      get :primer
     end
+  end
+  if method_defined?(:setup)
+    alias_method :setup_before_common_initialization, :setup
   end
   alias_method :setup, :setup_with_common_initialization
   
@@ -42,9 +43,17 @@ class Test::Unit::TestCase
     if method.to_s == 'setup'
       unless method_defined?(:setup_without_common_initialization)
         alias_method :setup_without_common_initialization, :setup
-        define_method(:setup) do
-          setup_with_common_initialization
-          setup_without_common_initialization
+        if method_defined?(:setup_before_common_initialization)
+          define_method(:setup) do
+            setup_before_common_initialization
+            setup_with_common_initialization
+            setup_without_common_initialization
+          end
+        else
+          define_method(:setup) do
+            setup_with_common_initialization
+            setup_without_common_initialization
+          end
         end
       end
     end

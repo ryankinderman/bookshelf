@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   # If you want "remember me" functionality, add this before_filter to Application Controller
   before_filter :login_from_cookie
+  skip_before_filter :login_required
 
   # say something nice, you goof!  something sweet.
   def index

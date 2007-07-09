@@ -2,6 +2,10 @@ require File.dirname(__FILE__) + '/controller_test_helper'
 
 class BooksControllerTest < Test::Unit::TestCase
   
+  def setup
+    login_as :quentin
+  end
+  
   def test_that_index_renders_and_assigns
     get :index
 
