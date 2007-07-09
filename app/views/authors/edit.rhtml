@@ -1,0 +1,4 @@
+<h1>Edit Author</h1>
+<% form_for :author, @author, :url => author_url(:id => @author.id), :html => {:method => 'put'} do |f| -%>
+  <%= render :partial => 'form_fields', :locals => {:f => f} %>
+<% end -%>  

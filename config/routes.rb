@@ -28,6 +28,7 @@ ActionController::Routing::Routes.draw do |map|
 #    },
 #    :member => {
 #    }
+  map.resources :authors
 
   # Default route
   map.default '', :controller => 'books', :action => 'index'

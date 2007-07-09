@@ -1,0 +1,20 @@
+<h1>Authors</h1>
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Author</th>
+    <th>Actions</th>
+  </tr>
+  <% @authors.each do |author| %>
+  <tr>
+    <td><%= author.title %></td>
+    <td><%= author.author %></td>
+    <td>
+      <%= link_to 'Edit', edit_author_url(:id => author.id) %> 
+      <%= link_to 'Remove', author_url(:id => author.id), :method => :delete %>
+    </td>
+  </tr> 
+  <% end %>
+</table>
+
+<%= link_to 'New Author', new_author_url %>

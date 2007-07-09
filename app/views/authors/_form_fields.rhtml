@@ -1,0 +1,12 @@
+<%= error_messages_for :author %>
+<div>
+  <label for="author_first_name">First Name</label>
+  <%= f.text_field :first_name %>
+</div>
+<div>
+  <label for="author_last_name">Last Name</label>
+  <%= f.text_field :last_name %>
+</div>
+
+<%= submit_tag %>
+<%= link_to 'Cancel', :action => 'index' %>
