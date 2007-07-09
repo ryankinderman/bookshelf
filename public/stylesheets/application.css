@@ -12,10 +12,19 @@ body {
 	float: left;
 	font-size: 35px;
 }
+#title>a {
+	text-decoration: none;
+  color: black;
+}
 
 #flash_error {
-	background-color: red;
+	background-color: pink;
 	padding: 5px;
+}
+
+#flash_notice {
+	background-color: lightgreen;
+	padding: 5px
 }
 
 #content {

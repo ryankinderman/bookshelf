@@ -13,8 +13,19 @@ class BookTest < Test::Unit::TestCase
   end
   
   def test_invalid_without_author
-    book = Book.new(params.delete_if { |k,v| k == :author })
+    book = Book.new(params.delete_if { |k,v| k == :author_id })
     assert !book.valid?    
+  end
+  
+  def test_author
+    book = Book.new(params)
+    book.author = Author.create!(:first_name => "Billy", :last_name => "Bob")
+    
+    book.save!
+    book.reload
+    
+    assert_not_nil book.author_id
+    assert_equal book.author_id, book.author.id 
   end
   
   private
@@ -22,7 +33,7 @@ class BookTest < Test::Unit::TestCase
   def params(differences={})
     {
       :title => "Test Title",
-      :author => "Test Author"
+      :author_id => differences.include?(:author_id) ? differences.delete(:author_id) : Author.create!(:first_name => "Bob", :last_name => "Bilbo").id
     }.merge(differences)
   end
   

@@ -4,8 +4,8 @@
   <%= f.text_field :title %>
 </div>
 <div>
-  <label for="book_author">Author</label>
-  <%= f.text_field :author %>
+  <label for="book_author_id">Author</label>
+	<%= f.select :author_id, Author.find(:all).collect { |author| [author.full_name, author.id] } %>
 </div>
 
 <%= submit_tag %>

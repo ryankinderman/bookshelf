@@ -31,7 +31,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :authors
 
   # Default route
-  map.default '', :controller => 'books', :action => 'index'
+  map.default '', :controller => 'users', :action => 'index'
 
   # Allow downloading Web Service WSDL as a file with an extension
   # instead of a file named 'wsdl'
