@@ -5,7 +5,7 @@
 </div>
 <div>
   <label for="book_author_id">Author</label>
-	<%= f.select :author_id, Author.find(:all).collect { |author| [author.full_name, author.id] }, :include_blank => true %>
+	<%= f.select 'author_ids_0', Author.find(:all).collect { |author| [author.full_name, author.id] }, {:include_blank => true}, :name => 'book[author_ids][0]' %>
 </div>
 
 <%= submit_tag %>

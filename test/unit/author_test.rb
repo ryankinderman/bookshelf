@@ -32,7 +32,7 @@ class AuthorTest < Test::Unit::TestCase
     
     assert author.books.empty?
     
-    author.books << new(:book)
+    author.books << create(:book)
     
     assert !author.books[0].new_record?
     

@@ -12,22 +12,44 @@ class BookTest < Test::Unit::TestCase
     assert !book.valid?
   end
   
-  def test_invalid_without_author
-    book = Book.new(params.delete_if { |k,v| k == :author_id })
-    assert !book.valid?    
+#  def test_invalid_without_author
+#    book = Book.new(params.delete_if { |k,v| k == :author_id })
+#    assert !book.valid?
+#  end
+  
+  def test_authors
+    book = Book.create!(params)
+    
+    assert book.authors.empty?
+    
+    book.authors << create(:author)
+    
+    assert !book.authors[0].new_record?
+    
+    book = Book.find(book.id)
+    
+    assert_equal 1, book.authors.length    
   end
   
-  def test_author
-    book = Book.new(params)
-    book.author = Author.create!(:first_name => "Billy", :last_name => "Bob")
+  def test_can_set_authors_by_id
+    book = create(:book)
     
+    author1 = create(:author)
+    book.author_ids = {"0" => author1.id}
     book.save!
-    book.reload
+    book = Book.find(book.id)
     
-    assert_not_nil book.author_id
-    assert_equal book.author_id, book.author.id 
+    assert_equal author1.id, book.authors[0].id
+    
+    author2 = create(:author)
+    book.author_ids = {"0" => author2.id}
+    book.save!
+    book = Book.find(book.id)
+    
+    assert_equal 1, book.authors.length
+    assert_equal author2.id, book.authors[0].id
   end
-  
+    
   private
   
   def params(differences={})

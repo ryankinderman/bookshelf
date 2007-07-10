@@ -1,7 +1,7 @@
 module ParamsHelper
   
   def create(model_name, differences = {})
-    model = Class.get(model_name)
+    model = Object.const_get(model_name.to_s.classify)
     new_object = new(model_name, differences)
     new_object.save
     assert model.exists?(new_object.id), "Failed to create #{model_name}, reason: #{new_object.errors.full_messages}"
@@ -24,8 +24,7 @@ module ParamsHelper
   
   def book_params(differences = {})
     {
-      :title => "Test Title",
-      :author_id => differences.include?(:author_id) ? differences.delete(:author_id) : Author.create!(:first_name => "Bob", :last_name => "Bilbo").id
+      :title => "Test Title"
     }.merge(differences)
   end
   
@@ -33,6 +32,13 @@ module ParamsHelper
     {
       :first_name => "First",
       :last_name => "Last"
+    }.merge(differences)
+  end
+  
+  def book_author_params(differences = {})
+    {
+      :book_id => differences.include?(:book_id) ? differences.delete(:book_id) : create(:book).id,
+      :author_id => differences.include?(:author_id) ? differences.delete(:author_id) : create(:author).id
     }.merge(differences)
   end
   
