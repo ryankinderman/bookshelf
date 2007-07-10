@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + '/../test_helper'
+require File.dirname(__FILE__) + '/model_test_helper'
 
 class BookTest < Test::Unit::TestCase
   
@@ -31,10 +31,7 @@ class BookTest < Test::Unit::TestCase
   private
   
   def params(differences={})
-    {
-      :title => "Test Title",
-      :author_id => differences.include?(:author_id) ? differences.delete(:author_id) : Author.create!(:first_name => "Bob", :last_name => "Bilbo").id
-    }.merge(differences)
+    book_params(differences)
   end
   
 end
