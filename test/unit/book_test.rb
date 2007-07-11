@@ -43,7 +43,7 @@ class BookTest < Test::Unit::TestCase
     assert_equal 1, book.book_authors.size
   end
 
-  def test_book_author_ids_setter
+  def test_book_author_ids
     book = new(:book)
     
     author1 = create(:author)
@@ -53,20 +53,9 @@ class BookTest < Test::Unit::TestCase
     
     book = Book.find(book.id)
     
-    assert_equal 1, book.book_authors.size
+    assert_equal author1.id, book.author_ids[0]
   end
   
-  def test_author_id
-    book = new(:book)
-    author = create(:author)
-    book.author_id = author.id
-    book.save!
-    
-    book = Book.find(book.id)
-    
-    assert_equal author.id, book.author_id
-  end
-
   private
   
   def params(differences={})

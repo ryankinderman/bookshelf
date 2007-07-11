@@ -8,12 +8,8 @@ class Book < ActiveRecord::Base
     self.book_authors = author_ids.collect { |id| BookAuthor.new(:author_id => id) }
   end
   
-  def author_id=(value)
-    self.book_authors = [BookAuthor.new(:author_id => value)]
-  end
-  
-  def author_id
-    book_authors.count == 0 ? nil : book_authors.first.author_id
+  def author_ids
+    self.book_authors.collect { |book_author| book_author.author_id }
   end
     
 end
