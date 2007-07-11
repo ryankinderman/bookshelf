@@ -4,11 +4,21 @@
   <%= f.text_field :title %>
 </div>
 <div>
+	<!--
+	{:book => {:author_ids => [1, 2, 3], :title => "Cold"}} 
+	http://bleh/?book[title]=Cold&book[author_ids][]=1&book[author_ids][]=2
+	-->
   <label for="book_author_ids_0">Author</label>
 	<%= select_tag "book_author_ids_0", 
     options_for_select(
       Author.find(:all).collect { |author| [author.full_name, author.id] }, 
       @book.nil? ? nil : @book.author_ids[0]), 
+    :include_blank => true, :name => "book[author_ids][]" %>
+  <label for="book_author_ids_1">Author</label>
+  <%= select_tag "book_author_ids_1", 
+    options_for_select(
+      Author.find(:all).collect { |author| [author.full_name, author.id] }, 
+      @book.nil? ? nil : @book.author_ids[1]), 
     :include_blank => true, :name => "book[author_ids][]" %>
 </div>
 

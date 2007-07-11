@@ -5,10 +5,13 @@ class BooksController < ApplicationController
   
   def create
     @book = Book.new(params[:book])
-    if @book.save
-      flash[:notice] = "Successfully created book '#{@book.title}'"
-      redirect_to_index
-    else
+    begin
+      Book.transaction do
+        @book.save!
+        flash[:notice] = "Successfully created book '#{@book.title}'"
+        redirect_to_index
+      end
+    rescue
       flash.now[:error] = "Errors occurred while attempting to create the book"
       render :action => 'new'
     end

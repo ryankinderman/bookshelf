@@ -92,5 +92,15 @@ class BooksControllerTest < Test::Unit::TestCase
     assert_assigns :books
     assert_flashes :notice
   end
+  
+#  def test_transaction
+#    BookAuthor.expects(:save!).returns(false)
+#    last_book = Book.find(:first, :order => 'id desc')
+#    
+#    post :create, :book => {:title => ...}
+#    
+#    now_last_book = Book.find(:first, :order => 'id desc')
+#    assert_equal last_book.id, now_last_book.id
+#  end
 
 end
