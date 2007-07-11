@@ -1,11 +1,13 @@
 <%= error_messages_for :book %>
 <div>
-  <label for="book_title">Title</label>
+  <label for="title">Title</label>
   <%= f.text_field :title %>
 </div>
 <div>
-  <label for="book_author_id">Author</label>
-	<%= f.select 'author_ids_0', Author.find(:all).collect { |author| [author.full_name, author.id] }, {:include_blank => true}, :name => 'book[author_ids][0]' %>
+  <label for="author_id">Author</label>
+	<%= f.select :author_id, 
+    Author.find(:all).collect { |author| [author.full_name, author.id] }, 
+    {:include_blank => true} %>
 </div>
 
 <%= submit_tag %>

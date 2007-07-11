@@ -31,25 +31,42 @@ class BookTest < Test::Unit::TestCase
     assert_equal 1, book.authors.length    
   end
   
-  def test_can_set_authors_by_id
+  def test_book_authors_setter
     book = create(:book)
     
     author1 = create(:author)
-    book.author_ids = {"0" => author1.id}
-    book.save!
+    
+    book.book_authors = [BookAuthor.new(:author_id => author1.id)]
+    
     book = Book.find(book.id)
     
-    assert_equal author1.id, book.authors[0].id
-    
-    author2 = create(:author)
-    book.author_ids = {"0" => author2.id}
-    book.save!
-    book = Book.find(book.id)
-    
-    assert_equal 1, book.authors.length
-    assert_equal author2.id, book.authors[0].id
+    assert_equal 1, book.book_authors.size
   end
+
+  def test_book_author_ids_setter
+    book = new(:book)
     
+    author1 = create(:author)
+    
+    book.author_ids = [author1.id]
+    book.save!
+    
+    book = Book.find(book.id)
+    
+    assert_equal 1, book.book_authors.size
+  end
+  
+  def test_author_id
+    book = new(:book)
+    author = create(:author)
+    book.author_id = author.id
+    book.save!
+    
+    book = Book.find(book.id)
+    
+    assert_equal author.id, book.author_id
+  end
+
   private
   
   def params(differences={})

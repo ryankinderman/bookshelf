@@ -4,9 +4,6 @@ class BooksController < ApplicationController
   end
   
   def create
-    puts "\n\n\n\n"
-    p params
-    puts "\n\n\n\n"
     @book = Book.new(params[:book])
     if @book.save
       flash[:notice] = "Successfully created book '#{@book.title}'"

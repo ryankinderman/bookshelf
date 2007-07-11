@@ -3,17 +3,17 @@ class Book < ActiveRecord::Base
   
   has_many :book_authors
   has_many :authors, :through => :book_authors
-  belongs_to :author
   
   def author_ids=(author_ids)
-    @author_ids = author_ids
+    self.book_authors = author_ids.collect { |id| BookAuthor.new(:author_id => id) }
   end
   
-  def after_save
-    unless @author_ids.nil?
-      self.book_authors.clear
-      @author_ids.each_value { |author_id| self.authors << Author.find(author_id) }
-      @author_ids = nil
-    end
+  def author_id=(value)
+    self.book_authors = [BookAuthor.new(:author_id => value)]
   end
+  
+  def author_id
+    book_authors.count == 0 ? nil : book_authors.first.author_id
+  end
+    
 end
