@@ -8,7 +8,7 @@
 	<%= select_tag "book_author_ids_0", 
     options_for_select(
       Author.find(:all).collect { |author| [author.full_name, author.id] }, 
-      @book.author_ids[0]), 
+      @book.nil? ? nil : @book.author_ids[0]), 
     :include_blank => true, :name => "book[author_ids][]" %>
 </div>
 
