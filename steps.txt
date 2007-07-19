@@ -1,0 +1,109 @@
+000 Decide what we're doing
+
+	- books_and_users.violet
+
+001 Set up the database connection
+	
+	> rake
+	
+	- See the database error?
+	- Open database.yml and set the database names to bookshelf_test, etc.
+	
+	> mysqladmin -u root create bookshelf_test
+	> mysqladmin -u root create bookshelf_development
+	
+	> rake
+	
+	- No errors!
+
+002 Create the authentication system
+  * Rails
+    * Plugins
+    * Generators
+  * ActiveRecord
+    * Migrations
+    * Validations
+  * Testing
+    * Fixtures
+  * Views
+    * Helper methods
+
+	> ruby script\plugin install http://svn.techno-weenie.net/projects/plugins/acts_as_authenticated
+	> ruby script\generate authenticated user users
+	> rake db:migrate	
+  > rake
+	> ruby script\server
+	
+	- Navigate to http://localhost:3000/users/index
+	- What just happened?
+	
+	- Let's add logout functionality to the index view
+		
+003 Create the basic Book CRUD functionality
+  * Rails
+    * Plugins (Mocha)
+  * ActionController
+    * flash
+  * ActiveRecord
+    * Migrations
+    * Validations
+    * Basic finder method calls
+    * save/update_attributes/delete
+  * Testing
+    * Mocking in unit tests with Mocha
+    * Testing controllers and models
+  * Views
+    * More helper methods (form_for, error_messages_for)
+
+  - Goals: create, update, remove books
+  - First, the tests
+  
+  - Install Mocha, a Ruby mocking library, as a Rails plugin
+  > ruby script/plugin install svn://rubyforge.org/var/svn/mocha/trunk
+  
+  - On your own:
+    - Turn the "Delete" functionality into an Ajax call with Rails' build-in Prototype 
+      functionality. Update the table asynchronously and add a Scriptaculous fade effect
+      for the row being removed.
+
+004 Clean things up
+  * Testing
+    * Extending TestCase
+  * Views
+    * flash
+    * layouts
+    * partials
+  
+  - Goals:
+    - Place shared view markup in partials
+    - Create layout
+    - Add flash messages to layout
+    - Place reusable controller test logic into test helper
+    - Introduce named and RESTful routes
+    - Add a default route
+    - Add authorization around books controller
+ 
+005 Associations: One-to-Many
+  * ActiveRecord
+    * belongs_to
+    * has_many
+  * Views
+    * Importing stylesheets
+  * Testing
+    * Using default-parameter-based model construction instead of fixtures
+ 
+  - Goals:
+    - One-to-Many:  Author has written many Books, and a Book has an Author
+
+006 Associations: Many-to-Many
+  * ActiveRecord
+    * has_and_belongs_to_many
+    * has_many :through
+  * Views
+    * Non-context-based form parameter construction
+  
+  - Goals:
+    - Really, a book could have multiple authors. Make Authors-Books a 
+      Many-to-Many relationship.
+
+007 
