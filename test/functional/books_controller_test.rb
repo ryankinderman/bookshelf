@@ -88,8 +88,7 @@ class BooksControllerTest < Test::Unit::TestCase
     
     delete :destroy, :id => 123
     
-    assert_redirected :action => 'index'
-    assert_assigns :books
+    assert_renders 'destroy'
     assert_flashes :notice
   end
   

@@ -1,0 +1,2 @@
+class SoftCoverBook < Book
+end

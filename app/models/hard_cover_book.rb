@@ -1,0 +1,2 @@
+class HardCoverBook < Book
+end

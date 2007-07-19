@@ -1,3 +1,7 @@
+<% content_for :head do -%>
+  <%= javascript_include_tag 'prototype', 'effects' %>
+<% end -%>
+
 <h1>Books</h1>
 <table>
 	<tr>
@@ -6,15 +10,21 @@
 		<th>Actions</th>
 	</tr>
 	<% @books.each do |book| %>
-  <tr>
+	<% row_id = "row_#{book.id}" -%>
+  <tr id="<%= row_id %>">
   	<td><%= book.title %></td>
 		<td><%= book.authors.collect { |a| a.full_name }.join("; ") %></td>
 		<td>
 			<%= link_to 'Edit', edit_book_url(:id => book.id) %> 
-			<%= link_to 'Remove', book_url(:id => book.id), :method => :delete %>
+			<%= link_to_remote 'Remove', 
+			  {
+			    :url => book_url(:id => book.id),
+			    :success => visual_effect(:fade, row_id),
+			    :failure => visual_effect(:pulsate, row_id, :duration => 0.5),
+			    :method => 'delete'
+			  } %>
 		</td>
   </tr>	
 	<% end %>
 </table>
-
 <%= link_to 'New Book', new_book_url %>

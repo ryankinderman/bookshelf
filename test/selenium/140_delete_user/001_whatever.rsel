@@ -1,0 +1,21 @@
+include_partial 'shared/setup'
+open '/books'
+
+wait_for_element_present 'login'
+
+click 'link=Sign Up'
+
+wait_for_element_present 'user_login'
+type 'user_login', 'ryan'
+type 'user_email', 'ryan'
+type 'user_password', 'ryan'
+type 'user_password_confirmation', 'ryan'
+
+click 'commit'
+
+wait_for_element_present "link=New Book"
+click "link=New Book"
+
+wait_for_element_present "xpath=//div[@id='content']//input[@id='book_title']"
+
+click 'link=Logout'

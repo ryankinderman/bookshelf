@@ -28,6 +28,10 @@ module ParamsHelper
     }.merge(differences)
   end
   
+  def soft_cover_book_params(differences = {})
+    book_params(differences)
+  end
+  
   def author_params(differences = {})
     {
       :first_name => "First",

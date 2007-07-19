@@ -5,13 +5,10 @@ class BooksController < ApplicationController
   
   def create
     @book = Book.new(params[:book])
-    begin
-      Book.transaction do
-        @book.save!
-        flash[:notice] = "Successfully created book '#{@book.title}'"
-        redirect_to_index
-      end
-    rescue
+    if @book.save
+      flash[:notice] = "Successfully created book '#{@book.title}'"
+      redirect_to_index
+    else
       flash.now[:error] = "Errors occurred while attempting to create the book"
       render :action => 'new'
     end
@@ -34,8 +31,7 @@ class BooksController < ApplicationController
   
   def destroy
     Book.delete(params[:id])
-    flash[:notice] = "Successfully removed book"
-    redirect_to_index
+    flash.now[:notice] = "Successfully removed book"
   end
   
   private

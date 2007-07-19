@@ -1,0 +1,2 @@
+page.replace_html 'flash', :partial => 'layouts/flash_messages'
+page.visual_effect :grow, 'flash'

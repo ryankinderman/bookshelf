@@ -42,7 +42,7 @@ Rails::Initializer.run do |config|
   # config.active_record.default_timezone = :utc
   
   # See Rails::Configuration for more options
-  config.active_record.colorize_logging = false
+  # config.active_record.colorize_logging = false
 end
 
 # Add new inflection rules using the following format 
@@ -59,3 +59,4 @@ end
 # Mime::Type.register "application/x-mobile", :mobile
 
 # Include your application configuration below
+Dir[RAILS_ROOT + '/app/extensions/**/*.rb'].each { |file| load file }
