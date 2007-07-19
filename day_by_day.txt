@@ -1,0 +1,74 @@
+Day 1 - Ruby Fundies
+- With Brian Schroeder's slides, I covered everything except the GUI and some of the RegExp stuff
+- Answered questions as they arose.
+
+Day 2 - Rails Fundies
+- Models
+  - Migrations
+  - Finder methods
+  - save/update_attributes/delete/destroy
+  - Associations
+    - 1-*       has_many
+    - *-1, 1-1  has_one, belongs_to
+  - Validations
+    - validates_length_of
+    - validates_format_of
+    - validates_presence_of
+- Testing
+  - Fixtures
+  - Mocking with Mocha
+- Controllers
+  - How actions get invoked
+  - Filters
+  - Flash
+- Views
+  - Templates
+  - Helper methods
+  - Including JavaScript/CSS files
+  - ERb
+  - Layouts
+  - Partials
+- Routes
+  - General Routes
+  - Named Routes
+  - Resource-based Routing
+  - Nested Routes
+  
+Day 3 - Ruby Meta-programming
+- Rails carry-over from Day 2
+  - Models
+    - Associations
+      - *-* has_and_belongs_to_many/has_many :through
+    - Callbacks
+    - Single Table Inheritance
+    - Polymorphic Associations
+      - Pseudo Multi-Table Inheritance
+    - Transactions
+    - Ajax
+      - Prototype
+      - Scriptaculous
+- Introduction to Metaprogramming
+  - Consisted of me, SciTE, and test/unit
+  - Demonstrated, via exploration, metaprogramming concepts
+    - instance_variable_get/set
+    - singleton classes
+    - Object > Module > Class inheritance hierarchy vs instance class
+    - block context capturing
+    - class_eval vs instance_eval with blocks vs code in a string
+    - "everything's an object"
+    - etc.
+- Explanation and assignment of revised MetaKoans
+
+Day 4 - Advanced Rails
+- MetaKoans Q/A
+- Extending Rails
+  - Developed a custom validation
+- Behind-the-scenes
+  - Transactions, and how Rails wraps them around chained model dependencies during a call to parent.save
+  - Inside validates_presence_of
+
+Day 5 - Odds and Ends
+  - RCov
+  - CruiseControl.rb
+  - Selenium functional testing
+  - Deployment w/Capistrano
