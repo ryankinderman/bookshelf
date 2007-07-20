@@ -1,0 +1,27 @@
+ThoughtWorks Ruby and Rails Training
+
+Prerequisites:
+
+  Install Stuff
+    
+    * Ruby (1.8.5)
+      * Windows: http://rubyforge.org/frs/download.php/17647/ruby185-24.exe
+      * Linux (Debian/Ubuntu [Feisty])
+        * sudo apt-get install ruby irb rdoc
+        - OR -
+        * Compile it: http://ftp.ruby-lang.org/pub/ruby/1.8/ruby-1.8.5-p2.tar.gz
+      * Mac (MacPorts)
+        * sudo port install ruby
+        - OR -
+        * Compile it: http://ftp.ruby-lang.org/pub/ruby/1.8/ruby-1.8.5-p2.tar.gz
+    * RubyGems (http://rubygems.org/read/chapter/3)
+      * Windows: http://rubyforge.org/frs/download.php/20990/rubygems-0.9.4.zip
+      * Linux: http://rubyforge.org/frs/download.php/20989/rubygems-0.9.4.tgz
+      * Mac (MacPorts): sudo port install rb-rubygems
+    * Rails (http://www.rubyonrails.org/down)
+    * Eclipse SDK 3.2 (if you don't already have it)
+      * Go to http://www.eclipse.org/downloads
+      * Download the "Classic" version
+    * Aptana (as Eclipse Plugin) (http://aptana.com/docs/index.php/Plugging_Aptana_into_an_existing_Eclipse_configuration)
+    * RadRails (as Eclipse Plugin) (http://www.aptana.com/download_rails_rdt.php)
+    * MySQL 5.0 (http://dev.mysql.com/downloads/mysql/5.0.html)
